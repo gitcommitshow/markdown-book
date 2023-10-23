@@ -1,0 +1,26 @@
+name: Split Markdown on PR Update
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '**.md'
+
+jobs:
+  split_markdown:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run the markdown splitter
+      run: |
+        node path_to_your_script.js  # replace with the actual path to your Node.js script
+
+    - name: Commit changes to the current PR branch
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "Split markdown files" || echo "No changes to commit"
+        git push
