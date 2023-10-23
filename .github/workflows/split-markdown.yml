@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize]
     paths:
       - '**.md'
+  workflow_dispatch:
 
 jobs:
   split_markdown:
