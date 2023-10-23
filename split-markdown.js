@@ -36,3 +36,8 @@ function splitMarkdown(mdPath, headingSeparator, subheadingSeparator) {
         }
     });
 }
+
+
+module.exports = {
+    splitMarkdown
+};
