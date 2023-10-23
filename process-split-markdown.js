@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const { splitMarkdown } = require('./split-markdown');
 
-const BIG_FILE_MIN_LINES = 1000;
+const BIG_FILE_MIN_LINES = process.env.BIG_FILE_MIN_LINES || 1000;
 const BASE_SHA = process.env.GITHUB_BASE_SHA || '';  // Base commit SHA from GitHub environment variables
 const HEAD_SHA = process.env.GITHUB_SHA || '';       // Latest commit SHA from GitHub environment variables
 
