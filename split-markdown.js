@@ -1,15 +1,18 @@
 /**
 ** Split a big markdown files to smaller files arranges in folders according to the heading and subheadings
-** Usage: splitMarkdown('path_to_your_markdown.md');
+** Usage: splitMarkdown('path_to_your_markdown.md', );
 **/
 const fs = require('fs');
 const path = require('path');
 
-function splitMarkdown(mdPath) {
+function splitMarkdown(mdPath, headingSeparator, subheadingSeparator) {
+    if(!mdPath) mdPath = 'demobook.md';
+    if(!headingSeparator) headingSeparator = '#';
+    if(!subheadingSeparator) subheadingSeparator = '##';
     const content = fs.readFileSync(mdPath, 'utf-8');
 
     // Split content based on main headings
-    const mainSections = content.split('\n# ');
+    const mainSections = content.split('\n'+headingSeparator+' ');
 
     mainSections.slice(1).forEach(section => {
         const lines = section.split('\n');
@@ -18,7 +21,7 @@ function splitMarkdown(mdPath) {
             fs.mkdirSync(folderName);
         }
 
-        const subSections = section.split('\n## ').slice(1);
+        const subSections = section.split('\n'+subheadingSeparator+' ').slice(1);
 
         if (subSections.length) {
             fs.writeFileSync(path.join(folderName, 'index.md'), lines.slice(0, lines.indexOf('## ' + subSections[0])).join('\n'));
