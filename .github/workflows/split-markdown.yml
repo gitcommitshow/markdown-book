@@ -16,7 +16,7 @@ jobs:
 
     - name: Run the markdown splitter
       run: |
-        node path_to_your_script.js  # replace with the actual path to your Node.js script
+        node split-markdown.js  # replace with the actual path to your Node.js script
 
     - name: Commit changes to the current PR branch
       run: |
